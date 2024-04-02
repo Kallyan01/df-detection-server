@@ -1,0 +1,4 @@
+/model
+*.pyc
+__pycache__/
+df-detect-server/
