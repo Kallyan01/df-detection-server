@@ -1,7 +1,8 @@
 # Documentation
 Start the venv by this command
 ```python
-source ./df-detect-server/bin/activate
+python3 -m venv env
+source ./env/bin/activate
 ```
 Install deps
 ```python
