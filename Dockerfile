@@ -1,5 +1,5 @@
 # Use the official CUDA base image
-FROM nvidia/cuda:11.4.1-cudnn8-runtime-ubuntu20.04
+FROM nvidia/cuda:12.3.2-devel-ubi8
 
 # Set the working directory in the container
 WORKDIR /app
