@@ -151,7 +151,7 @@ def upload_file():
     return jsonify({'error': 'Upload failed'})
 
 @app.route('/predict', methods=['GET'])
-def predict():
+def predictvid():
     path_to_videos= [
     "uploads/captured_video_20240402T183244966Z.webm"
                  ]
