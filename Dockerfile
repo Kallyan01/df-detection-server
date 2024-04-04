@@ -8,7 +8,7 @@ WORKDIR /app
 COPY requirements.txt .
 
 # Install system dependencies using yum (for UBI-based images)
-RUN yum install -y python3 python3-pip python3-venv
+RUN yum install -y python3 python3-pip
 
 # Create and activate the virtual environment
 RUN python3 -m venv venv
