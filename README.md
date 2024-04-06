@@ -8,3 +8,12 @@ Install deps
 ```python
 pip install -r requirements.txt
 ```
+## Build Docker Image 
+```shell
+sudo docker build -t build-server . 
+```
+```
+## Run Docker image 
+```shell
+sudo docker run --gpus all df-server```
+
