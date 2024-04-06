@@ -1,5 +1,5 @@
 # Use the official CUDA base image
-FROM nvidia/cuda:12.3.2-devel-ubi8
+FROM nvidia/cuda:12.4.0-devel-ubuntu22.04
 
 # Set the working directory in the container
 WORKDIR /app
@@ -7,15 +7,13 @@ WORKDIR /app
 # Copy the requirements file into the container at /app
 COPY requirements.txt .
 
-# Install system dependencies using yum (for UBI-based images)
-RUN yum install -y python3 python3-pip
-
-# Create and activate the virtual environment
-RUN python3 -m venv venv
-ENV PATH="/app/venv/bin:$PATH"
-
-# Install Python dependencies
-RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
+#Install system dependencies
+RUN apt-get update && \
+    apt-get install -y python3-pip python3-dev cmake libgl1-mesa-glx libglib2.0-dev && \
+    pip3 install --upgrade pip && \
+    pip3 install virtualenv && \
+    virtualenv venv && \
+    /bin/bash -c "source venv/bin/activate && pip install --no-cache-dir -r requirements.txt"
 
 # Copy the Flask application code into the container at /app
 COPY . .
@@ -27,4 +25,5 @@ EXPOSE 5000
 ENV FLASK_APP=app.py
 
 # Run the Flask application
-CMD ["flask", "run", "--host=0.0.0.0"]
+CMD ["/bin/bash", "-c", "source venv/bin/activate && flask run --host=0.0.0.0"]
+
