@@ -12,9 +12,10 @@ pip install -r requirements.txt
 ```shell
 sudo docker build -t build-server . 
 ```
-```
-## Run Docker image 
+## Run Docker image
+
 ```shell
-docker run --gpus all -p 5000:5000 -d df-server
-docker ps```
+docker run --gpus all -p 5000:5000 -d df-server \n
+docker ps
+```
 
