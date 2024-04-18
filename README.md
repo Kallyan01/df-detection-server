@@ -15,5 +15,7 @@ sudo docker build -t build-server .
 ```
 ## Run Docker image 
 ```shell
-sudo docker run --gpus all df-server```
+docker run --gpus all -p 5000:5000 -d df-server
+docker ps
+```
 
