@@ -133,28 +133,23 @@ class validation_dataset(Dataset):
 
 
 
-
-@app.route('/upload', methods=['POST'])
-def upload_file():
-    if 'video' not in request.files:
-        return jsonify({'error': 'No file part'})
-
-    file = request.files['video']
-    if file.filename == '':
-        return jsonify({'error': 'No selected file'})
-
+def upload_file(file):
     if file:
         filename = file.filename
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return jsonify({'message': 'File uploaded successfully'})
+        path = os.path.join(app.config['UPLOAD_FOLDER'])+'/'+filename
+        return path
 
-    return jsonify({'error': 'Upload failed'})
+    return None
 
-@app.route('/predict', methods=['GET'])
+@app.route('/predict', methods=['POST'])
 def predictvid():
-    path_to_videos= [
-    "uploads/captured_video_20240402T183244966Z.webm"
-                 ]
+  try:
+    file = request.files['video'] 
+    if not file:
+       return jsonify({"error": 'File upload unsuccessful ! Try Again'})
+    path_to_videos = []
+    path_to_videos.append(upload_file(file))
     result = ''
     video_dataset = validation_dataset(path_to_videos,sequence_length = 100,transform = train_transforms)
     model = Model(2).cuda()
@@ -169,6 +164,9 @@ def predictvid():
         else:
             result = "FAKE"
     return jsonify({'message': result})
+  except Exception as e:
+      return jsonify({'error': f'An error occurred: {str(e)}'}), 500
+     
 
 
 @app.route('/list', methods=['GET'])
