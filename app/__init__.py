@@ -19,3 +19,5 @@ app.config['CELERY_RESULT_BACKEND'] = os.getenv('CELERY_RESULT_BACKEND')
 CORS(app)
 celery = make_celery(app)
 
+from app import routes
+

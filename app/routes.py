@@ -4,7 +4,7 @@ import redis
 from app.functions.schema_validation import isPredictDataValid
 from app.functions.helper import hash_url
 from app import app
-from functions.tasks.predict import predictvid
+from app.functions.tasks.predict import predictvid
 
 UPLOAD_FOLDER = 'uploads'
 if not os.path.exists(UPLOAD_FOLDER):
