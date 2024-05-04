@@ -1,35 +1,26 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS
 import os
+import sys
 import torch
 import torchvision
 from torchvision import transforms
 from torch.utils.data import DataLoader
 from torch.utils.data.dataset import Dataset
-import os
 import numpy as np
 import cv2
 from torch import nn
 from torchvision import models
 import face_recognition
-import torch
-import torchvision
 from torchvision import transforms
 from torch.utils.data import DataLoader
 from torch.utils.data.dataset import Dataset
-import os
+from flask import Flask, request, jsonify
 import numpy as np
 import cv2
 import face_recognition
+from flask import request, jsonify
+from app import celery
 
 app = Flask(__name__)
-CORS(app)
-UPLOAD_FOLDER = 'uploads'
-if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-
 im_size = 112
 mean=[0.485, 0.456, 0.406]
 std=[0.229, 0.224, 0.225]
@@ -142,14 +133,16 @@ def upload_file(file):
 
     return None
 
-@app.route('/predict', methods=['POST'])
+@celery.task
 def predictvid():
   try:
     file = request.files['video'] 
+    print(file)
     if not file:
        return jsonify({"error": 'File upload unsuccessful ! Try Again'})
     path_to_videos = []
     path_to_videos.append(upload_file(file))
+    print(path_to_videos)
     result = ''
     video_dataset = validation_dataset(path_to_videos,sequence_length = 100,transform = train_transforms)
     model = Model(2).cuda()
@@ -166,18 +159,4 @@ def predictvid():
     return jsonify({'message': result})
   except Exception as e:
       return jsonify({'error': f'An error occurred: {str(e)}'}), 500
-     
-
-
-@app.route('/list', methods=['GET'])
-def list_files():
-    files = os.listdir(app.config['UPLOAD_FOLDER'])
-    return jsonify({'files': files})
-
-@app.route('/ping', methods=['GET'])
-def ping():
-    return jsonify({'message': 'pong'})
-
-if __name__ == '__main__':
-    app.run(debug=True)
-    print("App running ")
+  

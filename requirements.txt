@@ -5,5 +5,8 @@ flask-cors
 torch
 torchvision
 numpy
+redis
+celery
+dotenv
 
 

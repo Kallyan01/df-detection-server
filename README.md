@@ -8,6 +8,15 @@ Install deps
 ```python
 pip install -r requirements.txt
 ```
+
+## ENV setup deps
+add ```.env.dev``` & ```.env.prod``` to directory
+
+```python
+export FLASK_ENV=dev #for development server 
+export FLASK_ENV=prod #for production server
+```
+
 ## Build Docker Image 
 ```shell
 sudo docker build -t build-server . 
