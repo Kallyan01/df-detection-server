@@ -7,6 +7,6 @@ torchvision
 numpy
 redis
 celery
-dotenv
+python-dotenv
 
 
