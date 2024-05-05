@@ -14,17 +14,26 @@ add ```.env.dev``` & ```.env.prod``` to directory
 
 ```python
 export FLASK_ENV=dev #for development server 
+#or
 export FLASK_ENV=prod #for production server
 ```
+
+## Run locally
+
+```shell
+celery -A celery_worker worker --loglevel=INFO
+python3 run.py
+```
+
 
 ## Build Docker Image 
 ```shell
 sudo docker build -t build-server . 
 ```
+
 ## Run Docker image
 
 ```shell
-docker run --gpus all -p 5000:5000 -d df-server \n
-docker ps
+sudo docker run --gpus all df-server
 ```
 
