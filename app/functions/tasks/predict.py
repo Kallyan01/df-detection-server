@@ -18,9 +18,13 @@ import numpy as np
 import cv2
 import face_recognition
 from flask import request, jsonify
-from app import celery
+from app import celery , app
+import time
+UPLOAD_FOLDER = 'uploads'
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-app = Flask(__name__)
 im_size = 112
 mean=[0.485, 0.456, 0.406]
 std=[0.229, 0.224, 0.225]
@@ -134,15 +138,9 @@ def upload_file(file):
     return None
 
 @celery.task
-def predictvid():
-  try:
-    file = request.files['video'] 
-    print(file)
-    if not file:
-       return jsonify({"error": 'File upload unsuccessful ! Try Again'})
-    path_to_videos = []
-    path_to_videos.append(upload_file(file))
-    print(path_to_videos)
+def predictvid(**kwargs):
+  try:    
+    path_to_videos = kwargs.get('path')
     result = ''
     video_dataset = validation_dataset(path_to_videos,sequence_length = 100,transform = train_transforms)
     model = Model(2).cuda()
@@ -156,7 +154,16 @@ def predictvid():
             result = "REAL"
         else:
             result = "FAKE"
-    return jsonify({'message': result})
+    return {'message': result}
   except Exception as e:
-      return jsonify({'error': f'An error occurred: {str(e)}'}), 500
+      return {'error': f'An error occurred: {str(e)}'}
+
+
+
+@celery.task
+def process_task():
+    # query = request.args.get('id')
+    # print(query)
+    time.sleep(10)  # Simulate 1-minute delay
+    return {'message': 'Task completed in 1 minute.'}
   
