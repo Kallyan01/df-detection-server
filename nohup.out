@@ -1,0 +1,46 @@
+ * Serving Flask app 'app'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5000
+Press CTRL+C to quit
+ * Restarting with stat
+Traceback (most recent call last):
+  File "/home/kallyan/df-server/app.py", line 4, in <module>
+    import torch
+  File "/opt/conda/lib/python3.10/site-packages/torch/__init__.py", line 1477, in <module>
+    from .functional import *  # noqa: F403
+  File "/opt/conda/lib/python3.10/site-packages/torch/functional.py", line 9, in <module>
+    import torch.nn.functional as F
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/__init__.py", line 1, in <module>
+    from .modules import *  # noqa: F403
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/__init__.py", line 2, in <module>
+    from .linear import Identity, Linear, Bilinear, LazyLinear
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/linear.py", line 7, in <module>
+    from .. import functional as F
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/functional.py", line 16, in <module>
+    from torch._torch_docs import reproducibility_notes, tf32_notes, sparse_support_notes
+  File "/opt/conda/lib/python3.10/site-packages/torch/_torch_docs.py", line 5142, in <module>
+    r"""
+KeyboardInterrupt
+App running 
+ * Serving Flask app 'app'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5000
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 589-980-751
+127.0.0.1 - - [20/Apr/2024 16:24:10] "GET /ping HTTP/1.1" 200 -
+127.0.0.1 - - [20/Apr/2024 16:25:13] "POST /predict HTTP/1.1" 500 -
+/opt/conda/lib/python3.10/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/opt/conda/lib/python3.10/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNeXt50_32X4D_Weights.IMAGENET1K_V1`. You can also use `weights=ResNeXt50_32X4D_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Downloading: "https://download.pytorch.org/models/resnext50_32x4d-7cdf4587.pth" to /home/kallyan/.cache/torch/hub/checkpoints/resnext50_32x4d-7cdf4587.pth
+  0%|          | 0.00/95.8M [00:00<?, ?B/s]  0%|          | 24.0k/95.8M [00:00<14:22, 116kB/s]  0%|          | 56.0k/95.8M [00:00<12:11, 137kB/s]  0%|          | 136k/95.8M [00:00<06:44, 248kB/s]   0%|          | 304k/95.8M [00:00<03:35, 464kB/s]  1%|          | 624k/95.8M [00:01<01:57, 846kB/s]  1%|▏         | 1.27M/95.8M [00:01<01:00, 1.64MB/s]  3%|▎         | 2.54M/95.8M [00:01<00:31, 3.12MB/s]  5%|▌         | 5.12M/95.8M [00:01<00:15, 6.12MB/s]  9%|▉         | 8.80M/95.8M [00:01<00:09, 9.73MB/s] 13%|█▎        | 12.7M/95.8M [00:02<00:06, 12.5MB/s] 17%|█▋        | 16.4M/95.8M [00:02<00:05, 14.1MB/s] 21%|██▏       | 20.6M/95.8M [00:02<00:04, 15.8MB/s] 25%|██▌       | 24.3M/95.8M [00:02<00:04, 16.5MB/s] 29%|██▉       | 27.7M/95.8M [00:03<00:04, 16.5MB/s] 33%|███▎      | 31.5M/95.8M [00:03<00:03, 17.0MB/s] 37%|███▋      | 35.3M/95.8M [00:03<00:03, 17.3MB/s] 40%|███▉      | 38.1M/95.8M [00:03<00:03, 16.2MB/s] 44%|████▍     | 42.1M/95.8M [00:03<00:03, 17.1MB/s] 47%|████▋     | 44.7M/95.8M [00:04<00:03, 15.7MB/s] 50%|█████     | 48.0M/95.8M [00:04<00:03, 15.7MB/s] 54%|█████▍    | 51.7M/95.8M [00:04<00:02, 16.4MB/s] 58%|█████▊    | 55.1M/95.8M [00:04<00:02, 16.4MB/s] 61%|██████▏   | 58.9M/95.8M [00:05<00:02, 16.8MB/s] 65%|██████▌   | 62.4M/95.8M [00:05<00:02, 16.9MB/s] 69%|██████▉   | 66.3M/95.8M [00:05<00:01, 17.4MB/s] 73%|███████▎  | 69.6M/95.8M [00:05<00:01, 17.0MB/s] 77%|███████▋  | 73.3M/95.8M [00:05<00:01, 17.1MB/s] 81%|████████  | 77.3M/95.8M [00:06<00:01, 17.7MB/s] 85%|████████▍ | 81.2M/95.8M [00:06<00:00, 18.0MB/s] 89%|████████▉ | 85.0M/95.8M [00:06<00:00, 18.2MB/s] 93%|█████████▎| 88.8M/95.8M [00:06<00:00, 18.1MB/s] 97%|█████████▋| 92.6M/95.8M [00:06<00:00, 18.0MB/s]100%|██████████| 95.8M/95.8M [00:07<00:00, 14.3MB/s]
+127.0.0.1 - - [20/Apr/2024 16:32:29] "POST /predict HTTP/1.1" 500 -
+127.0.0.1 - - [20/Apr/2024 16:37:19] "POST /predict HTTP/1.1" 500 -
+/opt/conda/lib/python3.10/site-packages/torch/nn/modules/module.py:1511: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  return self._call_impl(*args, **kwargs)
+127.0.0.1 - - [20/Apr/2024 16:43:17] "POST /predict HTTP/1.1" 200 -

@@ -20,4 +20,3 @@ CORS(app)
 celery = make_celery(app)
 
 from app import routes
-

@@ -8,5 +8,6 @@ numpy
 redis
 celery
 python-dotenv
+eventlet
 
 
