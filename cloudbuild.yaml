@@ -1,0 +1,18 @@
+steps:
+  # Docker Build
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+            'build',
+            '-t',
+            'asia-south1-docker.pkg.dev/kallyans-project/df-server/dfapp:${SHORT_SHA}',
+            '.'
+          ]
+
+  # Docker push to Google Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push',  'asia-south1-docker.pkg.dev/kallyans-project/df-server/dfapp:${SHORT_SHA}']
+
+# Store images in Google Artifact Registry 
+images:
+  - asia-south1-docker.pkg.dev/kallyans-project/df-server/dfapp:${SHORT_SHA}
+  - asia-south1-docker.pkg.dev/kallyans-project/df-server/dfapp:latest
