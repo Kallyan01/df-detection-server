@@ -20,9 +20,10 @@ COPY . .
 EXPOSE 5000
 
 # Set the FLASK_APP environment variable
-ENV FLASK_APP=app.py
+ENV FLASK_APP=run.py
+ENV FLASK_ENV=prod
 
 # Run the Flask application
-CMD ["/bin/bash", "-c", "source venv/bin/activate && celery -A celery_worker worker --loglevel=INFO && export FLASK_ENV=prod && flask run --host=0.0.0.0"]
+CMD ["/bin/bash", "-c", "source venv/bin/activate && celery -A celery_worker worker --loglevel=INFO && flask run --host=0.0.0.0"]
 # CMD ["/bin/bash", "-c", "source venv/bin/activate && flask run --host=0.0.0.0"]
 
