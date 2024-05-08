@@ -9,11 +9,9 @@ COPY requirements.txt .
 
 #Install system dependencies
 RUN apt-get update && \
-    apt-get install -y python3-pip python3-dev cmake libgl1-mesa-glx libglib2.0-dev && \
-    pip3 install --upgrade pip && \
-    pip3 install virtualenv && \
-    virtualenv venv && \
-    /bin/bash -c "source venv/bin/activate && pip install --no-cache-dir -r requirements.txt"
+    apt-get install -y python3-pip python3-dev pytnon3-venv cmake libgl1-mesa-glx libglib2.0-dev && \
+    python3 -m venv venv && \
+    /bin/bash -c "source venv/bin/activate && pip3 install --upgrade pip && pip install --no-cache-dir -r requirements.txt"
 
 # Copy the Flask application code into the container at /app
 COPY . .
