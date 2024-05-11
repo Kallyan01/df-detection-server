@@ -21,7 +21,7 @@ export FLASK_ENV=prod #for production server
 ## Run locally
 
 ```shell
-celery -A celery_worker worker --loglevel=INFO
+celery -A celery_worker worker --loglevel=INFO -P eventlet
 python3 run.py
 ```
 

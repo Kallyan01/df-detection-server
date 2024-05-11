@@ -3,5 +3,4 @@
 __pycache__/
 env
 /uploads
-.env.dev
 .env.prod
