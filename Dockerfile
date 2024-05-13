@@ -10,8 +10,8 @@ COPY requirements.txt .
 #Install system dependencies
 RUN apt-get update && \
     apt-get install -y python3-pip python3-dev python3-venv cmake libgl1-mesa-glx libglib2.0-dev && \
-    python3 -m venv venv && \
-    /bin/bash -c "source venv/bin/activate && pip3 install --upgrade pip && pip install --no-cache-dir -r requirements.txt"
+    python3 -m venv env && \
+    /bin/bash -c "source env/bin/activate && pip3 install --upgrade pip && pip install --no-cache-dir -r requirements.txt"
 
 # Copy the Flask application code into the container at /app
 COPY . .
@@ -24,6 +24,6 @@ ENV FLASK_APP=run.py
 ENV FLASK_ENV=prod
 
 # Run the Flask application
-CMD ["/bin/bash", "-c", "source venv/bin/activate && celery -A celery_worker worker --loglevel=INFO -P eventlet && python3 run.py"]
+CMD ["/bin/bash", "-c", "celery -A celery_worker worker --loglevel=INFO -P eventlet && python3 run.py"]
 # CMD ["/bin/bash", "-c", "source venv/bin/activate && flask run --host=0.0.0.0"]
 
