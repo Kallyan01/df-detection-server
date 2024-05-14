@@ -23,6 +23,6 @@ ENV FLASK_APP=run.py
 ENV FLASK_ENV=prod
 
 # Run the Flask application
-CMD ["/bin/bash", "-c", "flask run --host=0.0.0.0 --port=5000 && celery -A celery_worker worker --loglevel=INFO -P eventlet"]
+CMD ["/bin/bash", "-c", "flask run --host=0.0.0.0 --port=5000 & celery -A celery_worker worker --loglevel=INFO -P eventlet"]
 # CMD ["/bin/bash", "-c", "source venv/bin/activate && flask run --host=0.0.0.0"]
 
