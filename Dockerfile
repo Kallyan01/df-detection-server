@@ -9,7 +9,7 @@ COPY requirements.txt .
 
 #Install system dependencies
 RUN apt-get update && \
-    apt-get install -y python3-pip python3-dev cmake libgl1-mesa-glx libglib2.0-dev && \
+    apt-get install -y python3-pip python3-dev cmake libgl1-mesa-glx libglib2.0-dev wget && \
     /bin/bash -c "pip3 install --upgrade pip && pip install --no-cache-dir -r requirements.txt"
 
 # Copy the Flask application code into the container at /app
@@ -17,6 +17,9 @@ COPY . .
 
 # Expose the port the Flask app runs on
 EXPOSE 5000
+
+RUN mkdir /model
+RUN wget -P /app/model https://ksdfstorage.blob.core.windows.net/ks-df-app/deep_fake-model-acc100.pt
 
 # Set the FLASK_APP environment variable
 ENV FLASK_APP=run.py
