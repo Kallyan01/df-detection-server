@@ -34,6 +34,7 @@ sudo docker build -t build-server .
 ## Run Docker image
 
 ```shell
-sudo docker run --gpus all df-server
+sudo docker run --gpus all -p 5000:5000 df-server 
+# for production run mention envs on the docker run script only by `-e <ENV_VALUE> \`
 ```
 
