@@ -19,7 +19,7 @@ COPY . .
 EXPOSE 5000
 
 RUN mkdir /model
-RUN wget -P /app/model https://ksdfstorage.blob.core.windows.net/ks-df-app/deep_fake-model-acc100.pt
+RUN wget -P /app/model https://ksdfstore.blob.core.windows.net/dfapp/deep_fake-model-acc100.pt
 
 # Set the FLASK_APP environment variable
 ENV FLASK_APP=run.py

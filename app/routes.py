@@ -1,6 +1,5 @@
 from flask import request, jsonify
 import os
-import redis 
 from app.functions.schema_validation import isPredictDataValid
 from app.functions.helper import hash_url
 from app import app ,celery
